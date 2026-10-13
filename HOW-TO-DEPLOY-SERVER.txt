@@ -1,0 +1,23 @@
+HOW TO PUT THE BLACKBULL SERVER ONLINE (about 15 minutes)
+
+You need: a free account at https://render.com (or any host that runs Node.js).
+
+1. Create a new "Web Service" on Render and choose "Build and deploy from a Git repository"
+   OR "Deploy an existing image". Easiest: create a GitHub repository, upload the
+   blackbull-server folder into it, and connect it to Render.
+2. Settings on Render:
+   - Build command:  npm install
+   - Start command:  npm start
+   - Environment variables (add these):
+       NODE_ENV          = production
+       TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM   (for SMS codes, see README.md)
+       BB_KV_TOKEN       = Tat37t6PBUiWP3P8ZPdAMzfAmhj6ksbsw7cHvi6SXruZZxUD   (copy exactly)
+       CORS_ORIGIN       = *
+       DATA_DIR          = /var/data   (and add a Disk on Render mounted at /var/data)
+3. Click Deploy. When it's live, Render shows an address like https://blackbull-server.onrender.com
+4. Open that address in Edge: it should say "Not found". That means the server is running.
+5. In config.js, paste the Render address into url (the token is already there):
+       server: { url: "https://YOUR-ADDRESS.onrender.com", token: "Tat37t6PBUiWP3P8ZPdAMzfAmhj6ksbsw7cHvi6SXruZZxUD" }
+6. Rebuild the app with HOW-TO-MAKE-THE-EXE.txt. The app will now save to your server.
+
+Keep the secret private. Anyone with the secret can read and change the data.

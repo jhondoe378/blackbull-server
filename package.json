@@ -1,0 +1,12 @@
+{
+  "name": "blackbull-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Blackbull account server: SMS verification, sign-up, login and sessions",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/server.test.js"
+  },
+  "engines": { "node": ">=18.17" }
+}
